@@ -1,15 +1,20 @@
 package com.cruz.teachable.controllers;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cruz.teachable.api.TeachableClient;
-import com.cruz.teachable.model.Course;
-import com.cruz.teachable.model.Enrollment;
+import com.cruz.teachable.model.EnrolleeReportCourse;
+import com.cruz.teachable.model.teachable.Course;
+import com.cruz.teachable.model.teachable.User;
+import com.cruz.teachable.services.TeachableService;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class ReportsController {
@@ -17,23 +22,17 @@ public class ReportsController {
     @Autowired
     private TeachableClient client;
 
+    @Autowired
+    private TeachableService service;
+
     @GetMapping("/report")
-    public void getReport() {
-        // call the endpoints to get the courses and users
-        var coursesMono = client.getCourses();
-        var usersMono = client.getUsers();
+    public Flux<List<EnrolleeReportCourse>> getReport() {
+        // start a call to get all the users in the school
+        Flux<User> userFlux = service.getAllUsers(); // assuming getUsers() returns a Flux<User>
+        Mono<Map<Integer, User>> userMap = userFlux.collectMap(User::id);
 
-        var coursesToEnrollmentsMap = new HashMap<Course, List<Enrollment>>();
-        coursesMono.subscribe(courses -> {
-            
-        })
-
-        // combine the results
-        coursesMono.zipWith(usersMono).subscribe(tuple -> {
-            var courses = tuple.getT1();
-            var users = tuple.getT2();
-
-        });
+        // start a call to get all the courses in the school
+        Flux<Course> courseFlux = service.getAllCourses();
 
     }
 }

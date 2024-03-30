@@ -1,4 +1,4 @@
-package com.cruz.teachable.model;
+package com.cruz.teachable.model.teachable;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 

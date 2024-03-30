@@ -1,4 +1,4 @@
-package com.cruz.teachable.model;
+package com.cruz.teachable.model.teachable;
 
 public record User(
         int id,
