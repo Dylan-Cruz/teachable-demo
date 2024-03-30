@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.cruz.teachable.model.Course;
+import com.cruz.teachable.model.Enrollment;
+import com.cruz.teachable.model.PagedResponse;
+import com.cruz.teachable.model.User;
 
 import reactor.core.publisher.Mono;
 
@@ -30,11 +33,11 @@ public class TeachableClient {
                 .build();
     }
 
-    public Mono<List<Course>> getCourses() {
+    public Mono<PagedResponse<List<Course>>> getCourses() {
         return this.webClient.get()
                 .uri("/v1/courses")
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<Course>>() {
+                .bodyToMono(new ParameterizedTypeReference<PagedResponse<List<Course>>>() {
                 })
                 .onErrorResume(e -> {
                     log.error("Error occurred while fetching courses: ", e);
@@ -42,4 +45,27 @@ public class TeachableClient {
                 });
     }
 
+    public Mono<PagedResponse<List<User>>> getUsers() {
+        return this.webClient.get()
+                .uri("/v1/users")
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<PagedResponse<List<User>>>() {
+                })
+                .onErrorResume(e -> {
+                    log.error("Error occurred while fetching users: ", e);
+                    return Mono.empty();
+                });
+    }
+
+    public Mono<PagedResponse<List<Enrollment>>> getEnrollments(int courseId) {
+        return this.webClient.get()
+                .uri("/v1/courses/{id}/enrollments", courseId)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<PagedResponse<List<Enrollment>>>() {
+                })
+                .onErrorResume(e -> {
+                    log.error("Error occurred while fetching enrollments: ", e);
+                    return Mono.empty();
+                });
+    }
 }
