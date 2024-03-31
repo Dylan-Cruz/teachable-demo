@@ -44,7 +44,7 @@ public class TeachableClient {
 
     public Mono<PagedResponse<List<User>>> getUsers(Integer page, Integer per) {
         return this.webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/v1/courses")
+                .uri(uriBuilder -> uriBuilder.path("/v1/users")
                         .queryParamIfPresent("page", Optional.ofNullable(page))
                         .queryParamIfPresent("per", Optional.ofNullable(per))
                         .build())
