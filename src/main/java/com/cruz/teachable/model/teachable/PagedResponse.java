@@ -19,6 +19,14 @@ public class PagedResponse<T> {
         return meta;
     }
 
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
     public String toString() {
         return "PagedResponse(data=" + this.getData() + ", meta=" + this.getMeta() + ")";
     }

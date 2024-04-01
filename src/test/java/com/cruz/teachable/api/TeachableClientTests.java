@@ -1,7 +1,6 @@
 package com.cruz.teachable.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
@@ -124,6 +123,39 @@ public class TeachableClientTests {
         Mono<PagedResponse<List<Course>>> response = teachableClient.getCourses(1, 10);
 
         // Assert
-        assertTrue(mockWebServer.takeRequest().getPath().contains("/courses?page=1&per_page=10"));
+        StepVerifier.create(response)
+                .expectNextMatches(pagedResponse -> {
+                    try {
+                        String requestPath = mockWebServer.takeRequest().getPath();
+                        return requestPath.contains("/courses?page=1&per=10");
+                    } catch (InterruptedException e) {
+                        return false;
+                    }
+                })
+                .verifyComplete();
+    }
+
+    @Test
+    public void testGetCoursesParamsNotPresent() {
+        // Arrange
+        String expectedResponse = "{\"courses\": [{\"id\": 1, \"name\": \"Course 1\"}]}";
+        mockWebServer.enqueue(new MockResponse()
+                .setBody(expectedResponse)
+                .addHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE));
+
+        // Act
+        Mono<PagedResponse<List<Course>>> response = teachableClient.getCourses(null, null);
+
+        // Assert
+        StepVerifier.create(response)
+                .expectNextMatches(pagedResponse -> {
+                    try {
+                        String requestPath = mockWebServer.takeRequest().getPath();
+                        return requestPath.endsWith("/courses");
+                    } catch (InterruptedException e) {
+                        return false;
+                    }
+                })
+                .verifyComplete();
     }
 }

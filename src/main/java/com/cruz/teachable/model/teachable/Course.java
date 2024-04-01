@@ -11,4 +11,7 @@ public record Course(
         String image_url,
         List<LectureSection> lectureSections) {
 
+    public Course(int id, String name, String heading) {
+        this(id, name, heading, null, true, null, List.of());
+    }
 }

@@ -1,8 +1,5 @@
 package com.cruz.teachable.services;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +15,12 @@ import reactor.core.publisher.Mono;
 @Service
 public class TeachableService {
 
+    private final TeachableClient client;
+
     @Autowired
-    private TeachableClient client;
+    public TeachableService(TeachableClient client) {
+        this.client = client;
+    }
 
     public Flux<Course> getAllCourses() {
         return client.getCourses(1, null)

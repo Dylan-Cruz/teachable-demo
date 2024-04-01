@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cruz.teachable.model.EnrolleeReportCourse;
+import com.cruz.teachable.model.EnrollmentReportCourse;
 import com.cruz.teachable.model.teachable.Course;
 import com.cruz.teachable.model.teachable.User;
 import com.cruz.teachable.services.TeachableService;
@@ -21,7 +21,7 @@ public class ReportsController {
     private TeachableService service;
 
     @GetMapping("/report")
-    public Flux<EnrolleeReportCourse> getReport() {
+    public Flux<EnrollmentReportCourse> getReport() {
         // start a call to get all the users in the school
         Flux<User> userFlux = service.getAllUsers();
 
@@ -39,7 +39,7 @@ public class ReportsController {
                             .flatMap(course -> service.getAllEnrollmentsForCourse(course.id())
                                     .map(enrollment -> userMap.get(enrollment.user_id()))
                                     .collectList()
-                                    .map(users -> new EnrolleeReportCourse(course, users)));
+                                    .map(users -> new EnrollmentReportCourse(course, users)));
                 });
     }
 }
