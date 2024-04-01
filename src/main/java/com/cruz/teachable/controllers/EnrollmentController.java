@@ -15,13 +15,13 @@ import com.cruz.teachable.services.TeachableService;
 import reactor.core.publisher.Flux;
 
 @RestController
-public class ReportsController {
+public class EnrollmentController {
 
     @Autowired
     private TeachableService service;
 
-    @GetMapping("/report")
-    public Flux<EnrollmentReportCourse> getReport() {
+    @GetMapping("/reports/enrollment")
+    public Flux<EnrollmentReportCourse> getEnrollmentReport() {
         // start a call to get all the users in the school
         Flux<User> userFlux = service.getAllUsers();
 

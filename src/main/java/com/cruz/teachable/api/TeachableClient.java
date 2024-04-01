@@ -21,10 +21,12 @@ import reactor.core.publisher.Mono;
 public class TeachableClient {
     private final WebClient webClient;
 
-    public TeachableClient(WebClient.Builder webClientBuilder, @Value("${teachable.baseUrl}") String baseUrl) {
+    public TeachableClient(WebClient.Builder webClientBuilder,
+            @Value("${teachable.baseUrl}") String baseUrl,
+            @Value("${teachable.apiKey}") String apiKey) {
         this.webClient = webClientBuilder.baseUrl(baseUrl)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .defaultHeader("apiKey", "7JbSA3ep6XOMV3t8t7QXuXq9HS79Dwnr")
+                .defaultHeader("apiKey", apiKey)
                 .build();
     }
 

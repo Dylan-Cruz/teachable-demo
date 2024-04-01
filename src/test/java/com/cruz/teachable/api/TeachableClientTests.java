@@ -30,7 +30,7 @@ public class TeachableClientTests {
         mockWebServer.start();
 
         WebClient.Builder webClientBuilder = WebClient.builder();
-        teachableClient = new TeachableClient(webClientBuilder, mockWebServer.url("/").toString());
+        teachableClient = new TeachableClient(webClientBuilder, mockWebServer.url("/").toString(), "");
     }
 
     @AfterEach
