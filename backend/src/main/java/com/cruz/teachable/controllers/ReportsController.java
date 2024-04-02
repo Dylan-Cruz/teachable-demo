@@ -19,15 +19,13 @@ import reactor.core.publisher.Mono;
 
 @CrossOrigin
 @RestController
-public class EnrollmentController {
+public class ReportsController {
 
     @Autowired
     private TeachableService service;
 
     @GetMapping("/reports/enrollment")
     public Mono<EnrollmentReport> getEnrollmentReport() {
-        log.info("Getting enrollment report");
-
         // start a call to get all the users in the school
         Flux<User> userFlux = service.getAllUsers();
 
