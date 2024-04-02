@@ -53,4 +53,4 @@ I like to summarize shortcuts or concessions I made for these projects due to ti
 ### Expansion
 - The code in the ReportsController.getEnrollmentReport() could be abstracted to a service so that if the server needs to assemble the same data to generate a PDF export for example, the code is reusable. 
 - Styling could be included on the frontend.
-- A feature could be inroduced to track where in the course most users unenroll. Since access to the unenroll webhook wasn't available I planned to simulate it with a wrapper around the teachable unenroll api but ran out of time. 
+- A feature could be introduced to track where in each course most users unenroll giving actionable insight to the creator on what to change. Since access to the unenroll webhook wasn't available I planned to simulate it with a wrapper around the teachable unenroll api but ran out of time. 
