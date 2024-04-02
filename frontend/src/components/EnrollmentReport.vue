@@ -1,30 +1,23 @@
 <script setup lang="ts">
-import type { Course } from '@/types/interfaces';
+import type { EnrollmentReport } from '@/types/interfaces';
 import EnrollmentReportCourse from './EnrollmentReportCourse.vue';
-import { ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
+import localClient from '../api/LocalClient';
 
-const courses = ref<Course[]>(
-    [
-        {
-            id: 1,
-            name: 'Vue 3',
-            heading: 'Learn Vue 3',
-            enrolledStudents: [
-                {
-                    id: 1,
-                    name: 'John Doe',
-                    email: 'john.doe@hotmail.com'
-                }
-            ]
-        }
-    ]
-);
+const enrollmentReport = ref<EnrollmentReport>({
+    courses: []
+});
+
+onMounted(async () => {
+    const report = await localClient.getEnrollmentReport();
+    enrollmentReport.value = report;
+});
 </script>
 
 <template>
     <div>
         <h1>Enrollment Report</h1>
-        <div v-for="course in courses" :key="course.name">
+        <div v-for="course in enrollmentReport.courses" :key="course.id">
             <EnrollmentReportCourse :course="course" />
         </div>
     </div>

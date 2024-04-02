@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import type { Course } from '../types/interfaces';
 import EnrollmentReportStudent from './EnrollmentReportStudent.vue';
 defineProps<{
@@ -12,8 +11,15 @@ defineProps<{
     <div>
         <h2>{{ course.name }}</h2>
         <h3>{{ course.heading }}</h3>
-        <div v-for="user in course.enrolledStudents" :key="user.id">
-            <EnrollmentReportStudent :student="user" />
-        </div>
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Email</th>
+            </tr>
+            <tr v-for="user in course.enrolledStudents" :key="user.id">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </table>
     </div>
 </template>

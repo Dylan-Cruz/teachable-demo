@@ -9,7 +9,6 @@ defineProps<{
 
 <template>
     <div>
-        <p>{{ student.name }}</p>
-        <p>{{ student.email }}</p>
+        <p>{{ student.name }} - {{ student.email }}</p>
     </div>
 </template>
