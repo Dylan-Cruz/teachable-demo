@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Course } from '../types/interfaces';
-import EnrollmentReportStudent from './EnrollmentReportStudent.vue';
 defineProps<{
     course: Course
 }>()
@@ -11,9 +10,10 @@ defineProps<{
     <div>
         <h2>{{ course.name }}</h2>
         <h3>{{ course.heading }}</h3>
+        <h4>Enrolled Students:</h4>
         <table>
             <tr>
-                <th>Student</th>
+                <th>Name</th>
                 <th>Email</th>
             </tr>
             <tr v-for="user in course.enrolledStudents" :key="user.id">

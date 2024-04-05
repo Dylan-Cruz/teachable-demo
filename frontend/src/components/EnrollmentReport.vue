@@ -22,3 +22,12 @@ onMounted(async () => {
         </div>
     </div>
 </template>
+
+<style scoped>
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+
+}
+</style>
