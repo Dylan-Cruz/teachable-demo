@@ -17,12 +17,16 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div>
-        <h1>Enrollment Report</h1>
+    <div class="mb-5">
+        <h1 class="m-5">Enrollment Report</h1>
         <div v-for="course in enrollmentReport.courses" :key="course.id">
             <EnrollmentReportCourse :course="course" />
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+h1 {
+    text-align: center;
+}
+</style>

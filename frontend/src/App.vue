@@ -11,3 +11,10 @@ import EnrollmentReport from './components/EnrollmentReport.vue'
         <EnrollmentReport />
     </main>
 </template>
+
+<style>
+#app {
+    margin: 0 auto;
+    max-width: 900px;
+}
+</style>

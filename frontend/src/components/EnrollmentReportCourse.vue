@@ -7,12 +7,13 @@ defineProps<{
 </script>
 
 <template>
-    <div>
-        <h2>{{ course.name }}</h2>
-        <h3>{{ course.heading }}</h3>
-        <h4>Enrolled Students:</h4>
-        <table class="table">
-            <thead>
+    <div class="mt-5">
+        <h3 class="mb-0" v-html="course.name"></h3>
+        <p class="text-muted" v-html="course.heading"></p>
+
+        <h5>Enrolled Students:</h5>
+        <table class="table table-striped table-bordered my-table">
+            <thead class="thead-light">
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -28,4 +29,10 @@ defineProps<{
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.my-table {
+    max-width: 900px;
+    margin: 0 auto;
+    word-break: break-word;
+}
+</style>
