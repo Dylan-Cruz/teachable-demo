@@ -10,9 +10,9 @@ defineProps<{
     <div class="mt-5">
         <h3 class="mb-0" v-html="course.name"></h3>
         <p class="text-muted" v-html="course.heading"></p>
-
         <h5>Enrolled Students:</h5>
-        <table class="table table-striped table-bordered my-table">
+        <p class="center" v-if="course.enrolledStudents.length === 0">No students enrolled</p>
+        <table v-else class="table table-striped table-bordered my-table">
             <thead class="thead-light">
                 <tr>
                     <th>Name</th>
@@ -26,6 +26,7 @@ defineProps<{
                 </tr>
             </tbody>
         </table>
+
     </div>
 </template>
 
@@ -34,5 +35,9 @@ defineProps<{
     max-width: 900px;
     margin: 0 auto;
     word-break: break-word;
+}
+
+.center {
+    text-align: center;
 }
 </style>

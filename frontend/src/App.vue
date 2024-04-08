@@ -15,6 +15,7 @@ import EnrollmentReport from './components/EnrollmentReport.vue'
 <style>
 #app {
     margin: 0 auto;
+    padding: 10px;
     max-width: 900px;
 }
 </style>
