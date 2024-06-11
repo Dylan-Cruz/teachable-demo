@@ -5,12 +5,12 @@ This is my submission for the take home assessment to generate a report listing 
 There are two ways you can run the server. Both require installing Java which is easiest using SDKMan (aka Java's version of RVM) found [here](https://sdkman.io/). 
 ### Build (optional)
 I inlcluded a build in case there are issues with building locally so this is optional. To build:
-1. install java 21.0.2
+1. install java 21.0.2 (openJDK)
 2. install gradle 8.7 (can also be installed via SDKman)
 3. cd into the root of the project and run `gradle build`
 4. tests will be ran and build output will be in build/libs/
 ### Run
-1. install java 21.0.2 if not installed
+1. install java 21.0.2 if not installed (openJDK)
 2. cd into the root of the project and run `java -jar build/libs/teachable-0.0.1-SNAPSHOT.jar`
 ### If all else fails, checkout the demo video
 If for some reason you can't build or run the application locally, you can watch the included demo video at the root of the project. 
