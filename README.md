@@ -42,7 +42,7 @@ All files in this explanation share the root path of `src/main/java/com/cruz/tea
 - **model/teachable/\***: A collection of domain objects used to unmarshal teachable api responses.
 - **model/\***: Domain objects that represent an enrollment report.
 #### 'Frontend'
-I took this opportunity to teach myself vue.js. In respect to the time constraint, all I had time to do was return a page with bare html. The build output of that project is included statically in the server jar file.
+I took this opportunity to teach myself vue.js. In respect to the time constraint, all I had time to do was return a page with minimal styling via bootstrap. The build output of that project is included statically in the server jar file.
 ### Limitations and Bad Practices
 I like to summarize shortcuts or concessions I made for these projects due to time. 
 1. I included testing only for the courses method stack in the api and service objects. This was to demonstrate that I can comprehensively test with a mock server and an object mocking framework without spending time copy and pasting the same tests for the other methods. I figured more isn't always better here.
@@ -52,5 +52,5 @@ I like to summarize shortcuts or concessions I made for these projects due to ti
 5. Ordering isn't guaranteed of the returned data set because asyncronous publishers are being combined into a single stream. This is something that can be fixed by using an operator built into the framework that waits for the publisher to complete before moving to the next one. This however results in what is essentially a syncronous call.
 ### Expansion
 - The code in the ReportsController.getEnrollmentReport() could be abstracted to a service so that if the server needs to assemble the same data to generate a PDF export for example, the code is reusable. 
-- Styling could be included on the frontend.
+- Better styling could be included on the frontend.
 - A feature could be introduced to track where in each course most users unenroll giving actionable insight to the creator on what to change. Since access to the unenroll webhook wasn't available I planned to simulate it with a wrapper around the teachable unenroll api but ran out of time. 
